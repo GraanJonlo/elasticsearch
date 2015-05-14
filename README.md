@@ -1,18 +1,16 @@
-# What is Neo4j?
+# What is Elasticsearch?
 
-Neo4j is an open-source graph database, implemented in Java. The developers describe Neo4j as "embedded, disk-based, fully transactional Java persistence engine that stores data structured in graphs rather than in tables". Neo4j is the most popular graph database.
+Elasticsearch is a search server based on Lucene. It provides a distributed, multitenant-capable full-text search engine with a RESTful web interface and schema-free JSON documents. Elasticsearch is developed in Java and is released as open source under the terms of the Apache License. Elasticsearch is the second most popular enterprise search engine.
 
-Neo4j was developed by Neo Technology, Inc., based in the San Francisco Bay Area, US and Malmö, Sweden. Neo Technology board of directors consists of Rod Johnson (founder of the Spring Framework), Chris Barchak (Partner at Conor Venture Partners), Magnus Christerson (Vice President of Intentional Software Corp), Nikolaj Nyholm (Partner at Sunstone Capital), Guarav Tuli (Principal at Fidelity Growth Partners) and Johan Svensson (CTO of Neo Technology).
+> [wikipedia.org/wiki/Elasticsearch](https://en.wikipedia.org/wiki/Elasticsearch)
 
-> [wikipedia.org/wiki/Neo4j](https://en.wikipedia.org/wiki/Neo4j)
-
-![logo](http://neo4j.com/wp-content/themes/neo4jweb/assets/images/neo4j-logo-2015.png)
+![logo](https://raw.githubusercontent.com/docker-library/docs/master/elasticsearch/logo.png)
 
 # How to use this image
 
-## start a neo4j instance
+## start an elasticsearch instance
 
-    docker run --name neo4j [-p 1337:1337 -p 7474:7474] [-v /some/directory:/data] -d graanjonlo/neo4j[:tag]
+    docker run --name elasticsearch [-p 9200:9200 -p 9300:9300] [-v /some/directory:/data] -d graanjonlo/elasticsearch[:tag]
 
-This image includes `EXPOSE 1337` and `7474`, so standard container linking will make it automatically available to the linked containers. It also includes `VOLUME ["/data"]` so you can mount a data volume.
+This image includes `EXPOSE 9200` and `9300`, so standard container linking will make it automatically available to the linked containers. It also includes `VOLUME ["/data"]` so you can mount a data volume.
 
