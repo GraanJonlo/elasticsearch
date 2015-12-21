@@ -1,4 +1,4 @@
-FROM phusion/baseimage:0.9.17
+FROM phusion/baseimage:0.9.18
 
 MAINTAINER Andy Grant <andy.a.grant@gmail.com>
 
@@ -8,7 +8,7 @@ RUN \
   openjdk-8-jdk \
   wget
 
-ENV ES_VERSION 1.7.3
+ENV ES_VERSION 1.7.4
 
 RUN \
   cd /tmp && \
