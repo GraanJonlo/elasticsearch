@@ -8,7 +8,7 @@ RUN \
   openjdk-8-jdk \
   wget
 
-ENV ES_VERSION 2.1.1
+ENV ES_VERSION 2.2.0
 
 RUN \
   cd /tmp && \
