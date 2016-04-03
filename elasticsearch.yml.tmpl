@@ -14,14 +14,13 @@
 #
 # Use a descriptive name for your cluster:
 #
-# cluster.name: my-application
-cluster.name: GraanJonloTest
+cluster.name: {{getenv "CLUSTER_NAME"}}
 #
 # ------------------------------------ Node ------------------------------------
 #
 # Use a descriptive name for the node:
 #
-# node.name: node-1
+node.name: {{getenv "NODE_NAME"}}
 #
 # Add custom attributes to the node:
 #
@@ -29,23 +28,14 @@ cluster.name: GraanJonloTest
 #
 # ----------------------------------- Paths ------------------------------------
 #
-# Path to directory containing configuration (this file and logging.yml):
-#
-path.conf: /elasticsearch/config
 # Path to directory where to store the data (separate multiple locations by comma):
 #
-# path.data: /path/to/data
-path.data: /data/index
+path.data: /data
 #
-# Can optionally include more than one location, causing data to be striped across
-# the locations (a la RAID 0) on a file level, favouring locations with most free
-# space on creation. For example:
+# Path to log files:
 #
-#path.data: /path/to/data1,/path/to/data2
-
-# Path to temporary files:
+path.logs: /var/logs/elasticsearch
 #
-path.work: /data/temp
 # ----------------------------------- Memory -----------------------------------
 #
 # Lock the memory on startup:
@@ -62,7 +52,8 @@ path.work: /data/temp
 # Set the bind address to a specific IP (IPv4 or IPv6):
 #
 # network.host: 192.168.0.1
-network.host: 0.0.0.0
+network.bind_host: 0.0.0.0
+network.publish_host: {{getenv "NETWORK_PUBLISH_HOST"}}
 #
 # Set a custom port for HTTP:
 #
@@ -70,6 +61,20 @@ network.host: 0.0.0.0
 #
 # For more information, see the documentation at:
 # <http://www.elastic.co/guide/en/elasticsearch/reference/current/modules-network.html>
+#
+# --------------------------------- Discovery ----------------------------------
+#
+# Pass an initial list of hosts to perform discovery when new node is started:
+# The default list of hosts is ["127.0.0.1", "[::1]"]
+#
+discovery.zen.ping.unicast.hosts: ["{{getenv "DISCOVERY_HOST"}}"]
+#
+# Prevent the "split brain" by configuring the majority of nodes (total number of nodes / 2 + 1):
+#
+discovery.zen.minimum_master_nodes: {{getenv "MINIMUM_MASTER_NODES"}}
+#
+# For more information, see the documentation at:
+# <http://www.elastic.co/guide/en/elasticsearch/reference/current/modules-discovery.html>
 #
 # ---------------------------------- Gateway -----------------------------------
 #
@@ -80,22 +85,6 @@ network.host: 0.0.0.0
 # For more information, see the documentation at:
 # <http://www.elastic.co/guide/en/elasticsearch/reference/current/modules-gateway.html>
 #
-# --------------------------------- Discovery ----------------------------------
-#
-# Elasticsearch nodes will find each other via unicast, by default.
-#
-# Pass an initial list of hosts to perform discovery when new node is started:
-# The default list of hosts is ["127.0.0.1", "[::1]"]
-#
-# discovery.zen.ping.unicast.hosts: ["host1", "host2"]
-#
-# Prevent the "split brain" by configuring the majority of nodes (total number of nodes / 2 + 1):
-#
-# discovery.zen.minimum_master_nodes: 3
-#
-# For more information, see the documentation at:
-# <http://www.elastic.co/guide/en/elasticsearch/reference/current/modules-discovery.html>
-#
 # ---------------------------------- Various -----------------------------------
 #
 # Disable starting multiple nodes on a single system:
@@ -105,5 +94,4 @@ network.host: 0.0.0.0
 # Require explicit names when deleting indices:
 #
 # action.destructive_requires_name: true
-
 

@@ -1,0 +1,21 @@
+version: '2'
+services:
+  elasticsearch:
+    image: graanjonlo/elasticsearch:2.3.0.1
+    ports:
+     - "9200:9200"
+     - "9300-9400:9300-9400"
+    expose:
+     - "9200"
+     - "9300-9400"
+    volumes:
+     - "/home/andy/docker/data/elasticsearch:/data"
+     - "/home/andy/docker/logs/elasticsearch:/var/logs/elasticsearch"
+    environment:
+     - CLUSTER_NAME=mycluster
+     - NODE_NAME=mynode
+     - DISCOVERY_HOST=127.0.0.1
+     - ES_HEAP_SIZE=2g
+     - MINIMUM_MASTER_NODES=1
+     - NETWORK_PUBLISH_HOST=127.0.0.1
+

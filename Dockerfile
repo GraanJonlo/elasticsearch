@@ -2,11 +2,16 @@ FROM phusion/baseimage:0.9.18
 
 MAINTAINER Andy Grant <andy.a.grant@gmail.com>
 
+ADD https://github.com/kelseyhightower/confd/releases/download/v0.11.0/confd-0.11.0-linux-amd64 /usr/local/bin/confd
+RUN chmod +x /usr/local/bin/confd
+
 RUN \
   add-apt-repository ppa:openjdk-r/ppa && \
   apt-get update && apt-get upgrade -y && apt-get install -y \
   openjdk-8-jdk \
   wget
+
+RUN rm -rf /var/lib/apt/lists/*
 
 ENV ES_VERSION 2.3.0
 
@@ -19,16 +24,22 @@ RUN \
   useradd -g elasticsearch elasticsearch && \
   rm -rf /tmp/*
 
+RUN \
+  cd /elasticsearch/bin && \
+  ./plugin install mobz/elasticsearch-head
+
 VOLUME ["/data"]
-VOLUME ["/elasticsearch/logs"]
+VOLUME ["/var/logs/elasticsearch"]
 
 RUN mkdir -p /etc/service/elasticsearch
 ADD elasticsearch.sh /etc/service/elasticsearch/run
-ADD elasticsearch.yml /elasticsearch/config/elasticsearch.yml
+
+ADD elasticsearch.toml /etc/confd/conf.d/elasticsearch.toml
+ADD elasticsearch.yml.tmpl /etc/confd/templates/elasticsearch.yml.tmpl
 ADD logging.yml /elasticsearch/config/logging.yml
 
 EXPOSE 9200
-EXPOSE 9300
+EXPOSE 9300-9400
 
 CMD ["/sbin/my_init", "--quiet"]
 

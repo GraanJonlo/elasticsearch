@@ -1,0 +1,11 @@
+[template]
+src = "elasticsearch.yml.tmpl"
+dest = "/elasticsearch/config/elasticsearch.yml"
+keys = [
+    "CLUSTER_NAME",
+    "NODE_NAME",
+    "DISCOVERY_HOST",
+    "MINIMUM_MASTER_NODES",
+    "NETWORK_PUBLISH_HOST",
+]
+
