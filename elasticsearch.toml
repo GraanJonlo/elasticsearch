@@ -4,7 +4,7 @@ dest = "/elasticsearch/config/elasticsearch.yml"
 keys = [
     "CLUSTER_NAME",
     "NODE_NAME",
-    "DISCOVERY_HOST",
+    "DISCOVERY_HOSTS",
     "MINIMUM_MASTER_NODES",
     "NETWORK_PUBLISH_HOST",
 ]
