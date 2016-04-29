@@ -1,5 +1,4 @@
 #!/bin/bash
-
 /usr/local/bin/confd -onetime -backend env
 
 mkdir -p /var/logs/elasticsearch
@@ -14,4 +13,3 @@ chmod 0755 /elasticsearch/plugins
 chmod 0755 /elasticsearch/config
 
 exec /sbin/setuser elasticsearch /elasticsearch/bin/elasticsearch
-

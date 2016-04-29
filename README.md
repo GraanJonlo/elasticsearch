@@ -8,7 +8,4 @@ Elasticsearch is a search server based on Lucene. It provides a distributed, mul
 
 # How to use this image
 
-## start an elasticsearch instance
-
 See the supporting docker-compose.yml for an example configuration.
-

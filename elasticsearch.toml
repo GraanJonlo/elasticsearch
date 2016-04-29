@@ -7,5 +7,5 @@ keys = [
     "DISCOVERY_HOSTS",
     "MINIMUM_MASTER_NODES",
     "NETWORK_PUBLISH_HOST",
+    "ES_HEAP_SIZE"
 ]
-
