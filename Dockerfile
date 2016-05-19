@@ -15,7 +15,7 @@ RUN \
 
 RUN rm -rf /var/lib/apt/lists/*
 
-ENV ES_VERSION 2.3.2
+ENV ES_VERSION 2.3.3
 
 RUN \
   cd /tmp && \
@@ -40,7 +40,6 @@ ADD elasticsearch.toml /etc/confd/conf.d/elasticsearch.toml
 ADD elasticsearch.yml.tmpl /etc/confd/templates/elasticsearch.yml.tmpl
 ADD logging.yml /elasticsearch/config/logging.yml
 
-EXPOSE 9200
-EXPOSE 9300-9400
+EXPOSE 9200 9300-9400
 
 CMD ["/sbin/my_init", "--quiet"]
