@@ -27,8 +27,9 @@ RUN \
   rm -rf /tmp/*
 
 RUN \
-  cd /elasticsearch/bin && \
-  ./plugin install mobz/elasticsearch-head
+  cd /elasticsearch && \
+  bin/plugin install mobz/elasticsearch-head && \
+  bin/plugin install royrusso/elasticsearch-HQ
 
 VOLUME ["/data"]
 VOLUME ["/var/logs/elasticsearch"]
