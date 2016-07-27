@@ -1,4 +1,4 @@
-FROM phusion/baseimage:0.9.18
+FROM phusion/baseimage:0.9.19
 
 MAINTAINER Andy Grant <andy.a.grant@gmail.com>
 
@@ -15,7 +15,7 @@ RUN \
 
 RUN rm -rf /var/lib/apt/lists/*
 
-ENV ES_VERSION 2.3.3
+ENV ES_VERSION 2.3.4
 
 RUN \
   cd /tmp && \
