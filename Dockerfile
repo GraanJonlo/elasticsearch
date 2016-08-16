@@ -15,7 +15,7 @@ RUN \
 
 RUN rm -rf /var/lib/apt/lists/*
 
-ENV ES_VERSION 2.3.4
+ENV ES_VERSION 2.3.5
 
 RUN \
   cd /tmp && \
