@@ -29,7 +29,8 @@ RUN \
 RUN \
   cd /elasticsearch && \
   bin/plugin install mobz/elasticsearch-head && \
-  bin/plugin install royrusso/elasticsearch-HQ
+  bin/plugin install royrusso/elasticsearch-HQ && \
+  bin/plugin install https://github.com/elastic/elasticsearch-migration/releases/download/v2.0.1/elasticsearch-migration-2.0.1.zip
 
 VOLUME ["/data"]
 VOLUME ["/var/logs/elasticsearch"]
