@@ -1,4 +1,4 @@
-FROM phusion/baseimage:0.9.19
+FROM phusion/baseimage:0.9.22
 
 MAINTAINER Andy Grant <andy.a.grant@gmail.com>
 
@@ -15,7 +15,7 @@ RUN \
 
 RUN rm -rf /var/lib/apt/lists/*
 
-ENV ES_VERSION 2.4.4
+ENV ES_VERSION 2.4.5
 
 RUN \
   cd /tmp && \
@@ -28,9 +28,7 @@ RUN \
 
 RUN \
   cd /elasticsearch && \
-  bin/plugin install mobz/elasticsearch-head && \
-  bin/plugin install royrusso/elasticsearch-HQ && \
-  bin/plugin install https://github.com/elastic/elasticsearch-migration/releases/download/v2.0.1/elasticsearch-migration-2.0.1.zip
+  bin/plugin install mobz/elasticsearch-head
 
 VOLUME ["/data"]
 VOLUME ["/var/logs/elasticsearch"]
