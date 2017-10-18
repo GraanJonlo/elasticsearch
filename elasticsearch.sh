@@ -11,5 +11,6 @@ chmod 0755 /data
 chmod 0755 /var/logs/elasticsearch
 chmod 0755 /elasticsearch/plugins
 chmod 0755 /elasticsearch/config
+chmod -R +r /elasticsearch
 
 exec /sbin/setuser elasticsearch /elasticsearch/bin/elasticsearch

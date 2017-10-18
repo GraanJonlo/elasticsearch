@@ -1,7 +1,7 @@
 version: '2'
 services:
   elasticsearch:
-    image: graanjonlo/elasticsearch:2.4.1.2
+    image: graanjonlo/elasticsearch:5.6.3
     ports:
      - "9200:9200"
      - "9300-9400:9300-9400"
@@ -17,6 +17,6 @@ services:
      - NODE_MASTER=true
      - NODE_DATA=true
      - DISCOVERY_HOSTS="127.0.0.1","127.0.0.2"
-     - ES_HEAP_SIZE=2g
+     - HEAP_SIZE=2g
      - MINIMUM_MASTER_NODES=1
      - NETWORK_PUBLISH_HOST=127.0.0.1

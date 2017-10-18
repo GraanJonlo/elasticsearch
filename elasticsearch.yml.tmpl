@@ -7,8 +7,8 @@
 # The primary way of configuring a node is via this file. This template lists
 # the most important settings you may want to configure for a production cluster.
 #
-# Please see the documentation for further information on configuration options:
-# <http://www.elastic.co/guide/en/elasticsearch/reference/current/setup-configuration.html>
+# Please consult the documentation for further information on configuration options:
+# https://www.elastic.co/guide/en/elasticsearch/reference/index.html
 #
 # ---------------------------------- Cluster -----------------------------------
 #
@@ -26,7 +26,7 @@ node.data: {{getenv "NODE_DATA"}}
 #
 # Add custom attributes to the node:
 #
-# node.rack: r1
+#node.attr.rack: r1
 #
 # ----------------------------------- Paths ------------------------------------
 #
@@ -44,8 +44,9 @@ path.logs: /var/logs/elasticsearch
 #
 # bootstrap.memory_lock: true
 #
-# Make sure that the `ES_HEAP_SIZE` environment variable is set to about half the memory
-# available on the system and that the owner of the process is allowed to use this limit.
+# Make sure that the heap size is set to about half the memory available
+# on the system and that the owner of the process is allowed to use this
+# limit.
 #
 # Elasticsearch performs poorly when the system is swapping the memory.
 #
@@ -61,8 +62,7 @@ network.publish_host: {{getenv "NETWORK_PUBLISH_HOST"}}
 #
 # http.port: 9200
 #
-# For more information, see the documentation at:
-# <http://www.elastic.co/guide/en/elasticsearch/reference/current/modules-network.html>
+# For more information, consult the network module documentation.
 http.cors.enabled: true
 http.cors.allow-origin: /.*/
 #
@@ -73,12 +73,11 @@ http.cors.allow-origin: /.*/
 #
 discovery.zen.ping.unicast.hosts: [{{getenv "DISCOVERY_HOSTS"}}]
 #
-# Prevent the "split brain" by configuring the majority of nodes (total number of nodes / 2 + 1):
+# Prevent the "split brain" by configuring the majority of nodes (total number of master-eligible nodes / 2 + 1):
 #
 discovery.zen.minimum_master_nodes: {{getenv "MINIMUM_MASTER_NODES"}}
 #
-# For more information, see the documentation at:
-# <http://www.elastic.co/guide/en/elasticsearch/reference/current/modules-discovery.html>
+# For more information, consult the zen discovery module documentation.
 #
 # ---------------------------------- Gateway -----------------------------------
 #
@@ -86,17 +85,12 @@ discovery.zen.minimum_master_nodes: {{getenv "MINIMUM_MASTER_NODES"}}
 #
 # gateway.recover_after_nodes: 3
 #
-# For more information, see the documentation at:
-# <http://www.elastic.co/guide/en/elasticsearch/reference/current/modules-gateway.html>
+# For more information, consult the gateway module documentation.
 #
 # ---------------------------------- Various -----------------------------------
-#
-# Disable starting multiple nodes on a single system:
-#
-# node.max_local_storage_nodes: 1
 #
 # Require explicit names when deleting indices:
 #
 # action.destructive_requires_name: true
 
-index.unassigned.node_left.delayed_timeout: 5m
+

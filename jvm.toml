@@ -1,0 +1,7 @@
+[template]
+src = "jvm.options.tmpl"
+dest = "/elasticsearch/config/jvm.options"
+keys = [
+    "HEAP_SIZE"
+]
+

@@ -1,8 +1,8 @@
-FROM phusion/baseimage:0.9.19
+FROM phusion/baseimage:0.9.22
 
 MAINTAINER Andy Grant <andy.a.grant@gmail.com>
 
-ADD https://github.com/kelseyhightower/confd/releases/download/v0.11.0/confd-0.11.0-linux-amd64 /usr/local/bin/confd
+ADD https://github.com/kelseyhightower/confd/releases/download/v0.12.0/confd-0.12.0-linux-amd64 /usr/local/bin/confd
 RUN chmod +x /usr/local/bin/confd
 
 RUN apt-get update && apt-get upgrade -y -o Dpkg::Options::="--force-confold"
@@ -15,22 +15,16 @@ RUN \
 
 RUN rm -rf /var/lib/apt/lists/*
 
-ENV ES_VERSION 2.4.1
+ENV ES_VERSION 5.6.3
 
 RUN \
   cd /tmp && \
-  wget -O elasticsearch.tar.gz https://download.elastic.co/elasticsearch/elasticsearch/elasticsearch-$ES_VERSION.tar.gz && \
+  wget -O elasticsearch.tar.gz https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-$ES_VERSION.tar.gz && \
   tar xvzf elasticsearch.tar.gz && \
   mv elasticsearch-$ES_VERSION /elasticsearch && \
   groupadd elasticsearch && \
   useradd -g elasticsearch elasticsearch && \
   rm -rf /tmp/*
-
-RUN \
-  cd /elasticsearch && \
-  bin/plugin install mobz/elasticsearch-head && \
-  bin/plugin install royrusso/elasticsearch-HQ && \
-  bin/plugin install https://github.com/elastic/elasticsearch-migration/releases/download/v2.0.1/elasticsearch-migration-2.0.1.zip
 
 VOLUME ["/data"]
 VOLUME ["/var/logs/elasticsearch"]
@@ -40,8 +34,13 @@ ADD elasticsearch.sh /etc/service/elasticsearch/run
 
 ADD elasticsearch.toml /etc/confd/conf.d/elasticsearch.toml
 ADD elasticsearch.yml.tmpl /etc/confd/templates/elasticsearch.yml.tmpl
-ADD logging.yml /elasticsearch/config/logging.yml
+
+ADD jvm.toml /etc/confd/conf.d/jvm.options.toml
+ADD jvm.options.tmpl /etc/confd/templates/jvm.options.tmpl
+
+ADD log4j2.properties /elasticsearch/config/log4j2.properties
 
 EXPOSE 9200 9300-9400
 
 CMD ["/sbin/my_init", "--quiet"]
+

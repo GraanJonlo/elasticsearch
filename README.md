@@ -9,3 +9,14 @@ Elasticsearch is a search server based on Lucene. It provides a distributed, mul
 # How to use this image
 
 See the supporting docker-compose.yml for an example configuration.
+
+If you get an error along the lines of
+
+```
+virtual memory areas vm.max_map_count [xxx] too low
+```
+
+try
+```
+sudo sysctl -w vm.max_map_count=262144
+```
