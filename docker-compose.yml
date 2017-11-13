@@ -1,7 +1,7 @@
 version: '2'
 services:
   elasticsearch:
-    image: graanjonlo/elasticsearch:5.6.3
+    image: graanjonlo/elasticsearch:5.6.4
     ports:
      - "9200:9200"
      - "9300-9400:9300-9400"
