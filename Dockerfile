@@ -15,7 +15,7 @@ RUN \
 
 RUN rm -rf /var/lib/apt/lists/*
 
-ENV ES_VERSION 6.0.0
+ENV ES_VERSION 6.0.1
 
 RUN \
   cd /tmp && \
