@@ -1,8 +1,8 @@
-FROM phusion/baseimage:0.10.0
+FROM phusion/baseimage:0.10.1
 
 MAINTAINER Andy Grant <andy.a.grant@gmail.com>
 
-ADD https://github.com/kelseyhightower/confd/releases/download/v0.15.0/confd-0.15.0-linux-amd64 /usr/local/bin/confd
+ADD https://github.com/kelseyhightower/confd/releases/download/v0.16.0/confd-0.16.0-linux-amd64 /usr/local/bin/confd
 RUN chmod +x /usr/local/bin/confd
 
 RUN apt-get update && apt-get upgrade -y -o Dpkg::Options::="--force-confold"
@@ -15,7 +15,7 @@ RUN \
 
 RUN rm -rf /var/lib/apt/lists/*
 
-ENV ES_VERSION 5.6.8
+ENV ES_VERSION 5.6.9
 
 RUN \
   cd /tmp && \
